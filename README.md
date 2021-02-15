@@ -1,7 +1,7 @@
 # SQL-Alchemy-challenge
 Assignment # 10: SQL Alchemy Challenge
 
-This is my overall 10th, second SQL, and first SQL Alchemy assignment / challenge. In "Step-1", I was required to "climate analysis and exploration". I was required to use "Python" and "SQLAlchemy" to do basic "climate analysis" and "data exploration" of my climate database. All of the following analysis had to be completed using "SQLAlchemy ORM" queries, "Pandas", and "Matplotlib":
+This is my overall 10th, second SQL, and first SQL Alchemy assignment / challenge. In "Step-1", I was required to perform "climate analysis and exploration". Also, I was required to use "Python" and "SQLAlchemy" to do basic "climate analysis" and "data exploration" of my climate database. All of the following analysis had to be completed using "SQLAlchemy ORM" queries, "Pandas", and "Matplotlib":
 * Used the provided "starter" notebook and "hawaii.sqlite" files to complete my "climate analysis" and "data exploration".
 * Chose a "start date" and "end date" for my trip, maaking sure that the vacation range is approximately 3-15 days total.
 * Used SQLAlchemy "create_engine" to connect to my "sqlite" database.
