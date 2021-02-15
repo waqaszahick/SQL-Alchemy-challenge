@@ -49,7 +49,8 @@ Temperature Analysis-I:
 * Hawaii is reputed to enjoy mild weather all year. Is there a meaningful difference between the temperature in, for example, June and December?
 * I was given option to either use "SQLAlchemy" or "Pandas's read_csv()" to perform this portion.
 * Identifed the "average temperature" in June at all stations across all available years in the dataset, and did the same for December temperature.
-* Used the "t-test" to determine whether the difference in the "means", if any, is statistically significant. Did I use a paired "t-test", or an unpaired "t-test"? Why?
+* Used the "t-test" to determine whether the difference in the "means", if any, is statistically significant.
+* Since "t-test" is a statistical test that is used to compare the "means" of two groups therefore, here in my assignment / challenge, I have used a paired "t-test" to compare the 'means' of first: 'average temperature' and maximum temperature', and then: 'average temperature' and minimum temperature'.
 
 Temperature Analysis-II:
 * The "starter" notebook contained a function called "calc_temps" that would accept a "start date" and "end date" in the format %Y-%m-%d. The function would return the minimum, average, and maximum temperatures for that range of dates.
