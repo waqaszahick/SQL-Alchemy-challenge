@@ -10,7 +10,7 @@ from sqlalchemy import create_engine, func
 from IPython.display import display
 
 def calc_temps(start_date, end_date):
-    return(engine.execute('select min(measurement.tobs), max(measurement.tobs), avg(measurement.tobs) from measurement where measurement.date between "'+ start_date +'" and "'+ end_date +'"')) # +'measurement.date <' + end_date
+    return(engine.execute('SELECT MIN(measurement.tobs), MAX(measurement.tobs), AVG(measurement.tobs) FROM measurement WHERE measurement.date BETWEEN "'+ start_date +'" AND "'+ end_date +'"'))
     
 engine = create_engine("sqlite:///Resources/hawaii.sqlite")
 
@@ -19,7 +19,7 @@ app = Flask(__name__)
 @app.route("/api/v1.0/precipitation")
 def precipitation():
     """Return the data as json"""
-    prec_data_last_12m = engine.execute('select measurement.date,measurement.prcp from measurement where measurement.date > "2016-08-23"')
+    prec_data_last_12m = engine.execute('SELECT measurement.date, measurement.prcp FROM measurement WHERE measurement.date > "2016-08-23"')
     data_dict = {}
     for row in prec_data_last_12m:
         data_dict[row[0]] = row[1]
@@ -28,16 +28,16 @@ def precipitation():
 @app.route("/api/v1.0/stations")
 def stations():
     """Return the data as json"""
-    avlbl_stn = engine.execute('select measurement.station from measurement group by measurement.station')
+    avlbl_stn = engine.execute('SELECT measurement.station FROM measurement GROUP BY measurement.station')
     stn_lst = [row[0] for row in avlbl_stn]
     return jsonify(stn_lst)
 
 @app.route("/api/v1.0/tobs")
 def tobs():
     """Return the data as json"""
-    stns_count = engine.execute('select measurement.station, count (measurement.station) from measurement group by measurement.station order by count (measurement.station) desc')
+    stns_count = engine.execute('SELECT measurement.station, COUNT (measurement.station) FROM measurement GROUP BY measurement.station ORDER BY COUNT (measurement.station) DESC')
     stns_count_lst = [row[0] for row in stns_count]
-    tmp_last_12m_mas = engine.execute('select measurement.date, measurement.tobs from measurement where measurement.station like "'+ stns_count_lst[0] + '%" and measurement.date > "2016-08-23"')
+    tmp_last_12m_mas = engine.execute('SELECT measurement.date, measurement.tobs FROM measurement WHERE measurement.station LIKE "'+ stns_count_lst[0] + '%" AND measurement.date > "2016-08-23"')
     tmp_lst = []
     for row in tmp_last_12m_mas:
         tmp_lst.append(row[1])
@@ -73,8 +73,8 @@ def start_end(start,end):
 @app.route("/")
 def welcome():
     return (
-        f"<b>Welcome to Home page!</b><br/><br/>"
-        f"Range of date: 2010-01-1 to 2017-08-23<br/><br/>"
+        f"<b>Welcome to Home page!</b><br/><br/>"        
+        f"<b>Note:</b> Date range is between 2010-01-1 and 2017-08-23. Date must be entered in YYYY-MM-DD format.<br/><br/>"
         f"Available routes:<br/>"
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
